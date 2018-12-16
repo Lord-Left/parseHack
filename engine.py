@@ -1,21 +1,30 @@
-import libtcodpy as lt
+import tdl
 
 def main():
 	screen_width = 80
 	screen_height = 50
 
-	lt.console_set_custom_font('arial10x10.png', lt.FONT_TYPE_GREYSCALE | lt.FONT_LAYOUT_TCOD)
+	tdl.set_font('arial10x10.png', greyscale=True, altLayout=True)
 
-	lt.console_init_root(screen_width, screen_height, 'PARSE_HACK 0.0.1', False)
-	while not lt.console_is_window_closed():
-		lt.console_set_default_foreground(0,lt.white)
-		lt.console_put_char(0,1,1,'@',lt.BKGND_NONE)
-		lt.console_flush()
+	root_console = tdl.init(screen_width, screen_height, title='PARSEHACK 0.0.1')
 
-		key = lt.console_check_for_keypress()
+	while not tdl.event.is_window_closed():
+			root_console.draw_char(1, 1, '@', bg=None, fg=(255,255,255))
+			tdl.flush()
 
-		if key.vk == lt.KEY_ESCAPE:
-			return True
+			root_console.draw_char(1, 1, ' ' , bg=None)
+			for event in tdl.event.get():
+					if event.type == 'KEYDOWN':
+							user_input = event
+							break
+			else:
+					user_input = None
+			
+			if not user_input:
+					continue
+
+			if user_input.key == 'ESCAPE':
+					return True;
 
 if __name__ == '__main__':
 	main()
