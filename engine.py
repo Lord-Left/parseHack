@@ -11,12 +11,13 @@ def main():
 	tdl.set_font('arial10x10.png', greyscale=True, altLayout=True)
 
 	root_console = tdl.init(screen_width, screen_height, title='PARSEHACK 0.0.1')
+	con = tdl.Console(screen_width,screen_height)
 
 	while not tdl.event.is_window_closed():
-			root_console.draw_char(player_x, player_y, '@', bg=None, fg=(255,255,255))
+			con.draw_char(player_x, player_y,'@',bg=None, fg=(255,255,255))
 			tdl.flush()
 
-			root_console.draw_char(player_x, player_y, ' ' , bg=None)
+			con.draw_char(player_x,	player_y, ' ', bg=None)
 			for event in tdl.event.get():
 					if event.type == 'KEYDOWN':
 							user_input = event
