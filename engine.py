@@ -15,6 +15,7 @@ def main():
 
 	while not tdl.event.is_window_closed():
 			con.draw_char(player_x, player_y,'@',bg=None, fg=(255,255,255))
+			root_console.blit(con, 0, 0, screen_width, screen_height, 0, 0)
 			tdl.flush()
 
 			con.draw_char(player_x,	player_y, ' ', bg=None)
